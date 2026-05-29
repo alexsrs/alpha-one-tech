@@ -8,8 +8,8 @@ export default function AboutSection(){
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div>
           <h2 className="text-2xl font-semibold text-slate-800">Sobre Nós</h2>
-          <p className="mt-4 text-slate-600">Somos especializados em infraestrutura de redes, telefonia, CFTV e controle de acesso. Desenvolvemos soluções escaláveis e sob medida, com foco em disponibilidade, segurança e facilidade de manutenção.</p>
-          <p className="mt-4 text-slate-600">Trabalhamos com as melhores marcas e desenvolvemos soluções próprias em nossos projetos, garantindo uma solução abrangente e completa. Nossos consultores e técnicos, treinados junto aos fabricantes, projetam e apresentam a solução ideal para sua empresa.</p>
+          <p className="mt-4 text-slate-600">A Alpha Instalações e Equipamentos Eletrônicos oferece soluções completas em infraestrutura de rede, segurança eletrônica e automação, com tecnologia de ponta e equipe especializada para proteger o que realmente importa.</p>
+          <p className="mt-4 text-slate-600">Atuamos com projetos, instalação e manutenção de redes, CFTV, controle de acesso, interfones e automação, sempre com atendimento personalizado e suporte técnico qualificado.</p>
         </div>
         <div>
           <img src={aboutImg} alt="Sobre" className="w-full h-56 object-cover rounded-md shadow-sm" />
@@ -18,4 +18,3 @@ export default function AboutSection(){
     </section>
   )
 }
-

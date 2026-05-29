@@ -15,8 +15,8 @@ export default function Hero(){
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
 <div className="text-white max-w-xl">
            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">Alpha Tech One</h1>
-           <p className="mt-4 text-lg md:text-xl text-white/90">Estrutura, agilidade e segurança</p>
-           <p className="mt-4 text-lg md:text-xl text-white/90">Soluções integradas em infraestrutura de redes, CFTV e controle de acesso para residências, empresas e condomínios, garantindo eficiência, segurança e continuidade operacional.</p>
+           <p className="mt-4 text-xl md:text-2xl text-white/95 font-semibold">Tecnologia, segurança e confiança para o seu dia a dia.</p>
+           <p className="mt-4 text-lg md:text-xl text-white/90">Soluções integradas em infraestrutura de rede, segurança eletrônica e automação para residências, empresas e condomínios.</p>
           <div className="mt-8 flex flex-wrap gap-4">
             <a href="#contato" className="inline-flex items-center gap-2 border border-white/30 text-white px-5 py-3 rounded cursor-pointer">Fale Conosco</a>
           </div>
@@ -31,5 +31,4 @@ export default function Hero(){
     </section>
   )
 }
-
 

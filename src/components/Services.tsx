@@ -1,15 +1,15 @@
 ﻿import React from "react";
-import { Camera, Shield, Network, Eye, Phone, Wifi } from "lucide-react";
+import { Camera, Shield, Network, Phone, Settings } from "lucide-react";
 import services from "../lib/services";
 
 function makeIcon(title: string){
   switch(title){
-    case "CFTV e Câmeras": return <Camera className="text-[#0036b2]" />;
-    case "Cabeamento Estruturado": return <Network className="text-[#0036b2]" />;
-    case "Controle de Acesso": return <Shield className="text-[#0036b2]" />;
-    case "Reconhecimento Facial": return <Eye className="text-[#0036b2]" />;
+    case "CFTV, Câmeras e Monitoramento": return <Camera className="text-[#0036b2]" />;
+    case "Infraestrutura de Rede": return <Network className="text-[#0036b2]" />;
+    case "Controle de Acesso e Segurança Eletrônica": return <Shield className="text-[#0036b2]" />;
+    case "Interfones e Vídeo Porteiros": return <Phone className="text-[#0036b2]" />;
+    case "Cancelas Eletrônicas": return <Settings className="text-[#0036b2]" />;
     case "Telefonia VOIP & PABX": return <Phone className="text-[#0036b2]" />;
-    case "Wi-Fi Corporativo e Hotspots": return <Wifi className="text-[#0036b2]" />;
     default: return <Network className="text-[#0036b2]" />;
   }
 }
@@ -21,13 +21,9 @@ export default function Services(){
         <h2 className="text-2xl font-semibold text-slate-800 mb-6">Nossos Serviços</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {services.map(s => (
-            <div
+            <article
               key={s.slug}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { history.pushState({}, "", `/servico/${s.slug}`); window.dispatchEvent(new PopStateEvent('popstate')); } }}
-              onClick={() => { history.pushState({}, "", `/servico/${s.slug}`); window.dispatchEvent(new PopStateEvent('popstate')); }}
-              className="text-left bg-white rounded-lg shadow-sm border overflow-hidden cursor-pointer transform transition hover:shadow-md hover:-translate-y-1"
+              className="text-left bg-white rounded-lg shadow-sm border overflow-hidden transform transition hover:shadow-md hover:-translate-y-1"
             >
               <div className="relative h-40 w-full">
                 <img src={s.image} alt={s.title} className="w-full h-full object-cover" />
@@ -53,7 +49,7 @@ export default function Services(){
                   </button>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

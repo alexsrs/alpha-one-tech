@@ -4,6 +4,8 @@ import "./index.css";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
+import Segments from "./components/Segments";
+import Differentials from "./components/Differentials";
 import Partners from "./components/Partners";
 import Projects from "./components/Projects";
 import AboutSection from "./components/AboutSection";
@@ -11,6 +13,20 @@ import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
 import ServiceTemplate from "./components/ServiceTemplate";
 import services from "./lib/services";
+
+const serviceSlugAliases: Record<string, string> = {
+  "cftv-e-cameras": "cftv-cameras-monitoramento",
+  monitoramento: "cftv-cameras-monitoramento",
+  "controle-de-acesso": "controle-acesso-seguranca-eletronica",
+  "fechadura-eletronica": "controle-acesso-seguranca-eletronica",
+  "seguranca-eletronica": "controle-acesso-seguranca-eletronica",
+  "reconhecimento-facial": "controle-acesso-seguranca-eletronica",
+  "cabeamento-estruturado": "infraestrutura-de-rede",
+  "wifi-corporativo": "infraestrutura-de-rede",
+  interfones: "interfones-video-porteiros",
+  "cancelas-eletronicas": "cancelas-eletronicas",
+  "telefonia-voip-pabx": "telefonia-voip-pabx",
+};
 
 export default function App() {
   const [path, setPath] = useState<string>(location.pathname || "/");
@@ -24,7 +40,8 @@ export default function App() {
   // route /servico/:slug
   if (path.startsWith("/servico/")) {
     const slug = path.replace("/servico/", "").replace(/\/$/, "");
-    const svc = services.find(s => s.slug === slug);
+    const canonicalSlug = serviceSlugAliases[slug] ?? slug;
+    const svc = services.find(s => s.slug === canonicalSlug);
     return (
       <div className="min-h-screen bg-white text-slate-800 font-sans">
         <Navbar />
@@ -43,6 +60,12 @@ export default function App() {
         <Hero />
         <section className="my-4">
           <Services />
+        </section>
+        <section className="my-4">
+          <Segments />
+        </section>
+        <section className="my-4">
+          <Differentials />
         </section>
         <section className="my-4">
           <Partners />
