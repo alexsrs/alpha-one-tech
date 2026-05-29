@@ -1,4 +1,4 @@
-## Diretrizes de Aplicação — Grid Engenharia de Redes
+## Diretrizes de Aplicação — Alpha Tech One
 
 ### Uso do Logotipo
 - Versão principal: símbolo à esquerda, texto à direita.
@@ -9,7 +9,7 @@
 
 ### Paleta de Cores
 - Azul Navy (Base) — #1A2B48 — Títulos, marca, fundos sóbrios.  
-- Verde Status (Ação) — #4CAF50 — CTAs, ícones de status, realces.  
+- Azul Ação — #0036b2 — CTAs, ícones de status, realces.
 - Cinza Técnico — #64748B — Textos de apoio, ícones secundários.  
 - Branco Gelo — #F8FAFC — Fundo principal.
 
@@ -17,7 +17,7 @@ Exemplo CSS variável:
 ```css
 :root{
     --brand-blue:#1A2B48;
-    --brand-green:#4CAF50;
+    --brand-action:#0036b2;
     --gray-technical:#64748B;
     --ice-white:#F8FAFC;
 }
@@ -39,12 +39,12 @@ Import (exemplo):
 
 ### Componentes e Estilo
 - Cards: fundo branco, borda sutil, sombra leve (ex: shadow-sm).  
-- Botão principal (Solicitar Orçamento): background #4CAF50, texto branco, borda arredondada. Exemplo Tailwind:
-    `bg-[#4CAF50] text-white rounded-md px-4 py-2 hover:opacity-90`
-- Grid de serviços: 3 colunas responsivas; ícone verde no topo, título em negrito.
+- Botão principal (Solicitar Orçamento): background #0036b2, texto branco, borda arredondada. Exemplo Tailwind:
+    `bg-[#0036b2] text-white rounded-md px-4 py-2 hover:opacity-90`
+- Grid de serviços: 3 colunas responsivas; ícone azul no topo, título em negrito.
 
 ### Layouts Específicos
-- Hero: imagem de data center com overlay suave + título "Grid Engenharia de Redes" e subtítulo "Estrutura, agilidade e segurança".
+- Hero: imagem de data center com overlay suave + título "Alpha Tech One" e subtítulo "Estrutura, agilidade e segurança".
 - Sobre Nós: texto à esquerda, imagem técnica à direita.
 - Formulário de Contato: formulário simples com mapa ao lado (placeholder).
 

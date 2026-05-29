@@ -32,8 +32,8 @@ export default function ServiceTemplate({ service }: Props){
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {service.advantages.map(a => (
             <div key={a.title} className="bg-white p-6 rounded shadow-sm text-center">
-              <div className="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-3">
-                {a.icon ?? <CheckCircle className="text-emerald-500" size={20} />}
+<div className="w-12 h-12 rounded-full bg-[#0036b2]/10 flex items-center justify-center mx-auto mb-3">
+                 {a.icon ?? <CheckCircle className="text-[#0036b2]" size={20} />}
               </div>
               <h3 className="font-semibold mb-2">{a.title}</h3>
               <p className="text-slate-600 text-sm">{a.text}</p>

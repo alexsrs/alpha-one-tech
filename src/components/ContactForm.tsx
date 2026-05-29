@@ -126,7 +126,7 @@ export default function ContactForm({ initialService, onClose }: ContactFormProp
 
             <div className="flex items-center gap-3">
               <button type="button" onClick={handleReset} className="bg-white text-slate-700 border border-slate-200 px-4 py-2 rounded cursor-pointer">Limpar</button>
-              <button type="submit" className="ml-auto bg-emerald-500 text-white px-4 py-2 rounded cursor-pointer">Solicitar Orçamento</button>
+              <button type="submit" className="ml-auto bg-[#0036b2] text-white px-4 py-2 rounded cursor-pointer">Solicitar Orçamento</button>
             </div>
           </form>
         </div>

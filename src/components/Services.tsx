@@ -4,13 +4,13 @@ import services from "../lib/services";
 
 function makeIcon(title: string){
   switch(title){
-    case "CFTV e Câmeras": return <Camera className="text-emerald-500" />;
-    case "Cabeamento Estruturado": return <Network className="text-emerald-500" />;
-    case "Controle de Acesso": return <Shield className="text-emerald-500" />;
-    case "Reconhecimento Facial": return <Eye className="text-emerald-500" />;
-    case "Telefonia VOIP & PABX": return <Phone className="text-emerald-500" />;
-    case "Wi-Fi Corporativo e Hotspots": return <Wifi className="text-emerald-500" />;
-    default: return <Network className="text-emerald-500" />;
+    case "CFTV e Câmeras": return <Camera className="text-[#0036b2]" />;
+    case "Cabeamento Estruturado": return <Network className="text-[#0036b2]" />;
+    case "Controle de Acesso": return <Shield className="text-[#0036b2]" />;
+    case "Reconhecimento Facial": return <Eye className="text-[#0036b2]" />;
+    case "Telefonia VOIP & PABX": return <Phone className="text-[#0036b2]" />;
+    case "Wi-Fi Corporativo e Hotspots": return <Wifi className="text-[#0036b2]" />;
+    default: return <Network className="text-[#0036b2]" />;
   }
 }
 
@@ -40,13 +40,13 @@ export default function Services(){
               </div>
               <div className="p-4 pt-3">
                 <div className="flex items-center gap-3">
-                  <div className="text-emerald-500">{makeIcon(s.title)}</div>
+                  <div className="text-[#0036b2]">{makeIcon(s.title)}</div>
                   <div className="font-semibold text-md leading-tight">{s.title}</div>
                 </div>
                 <div className="mt-4 flex justify-center">
                   <button
                     onClick={(e) => { e.stopPropagation(); history.pushState({}, "", `/servico/${s.slug}`); window.dispatchEvent(new PopStateEvent('popstate')); }}
-                    className="inline-flex items-center text-emerald-600 border border-emerald-100 bg-white px-4 py-2 rounded text-sm hover:bg-emerald-50 cursor-pointer"
+                    className="inline-flex items-center text-[#0036b2] border border-[#0036b2]/20 bg-white px-4 py-2 rounded text-sm hover:bg-[#0036b2]/5 cursor-pointer"
                     aria-label={`Saiba mais sobre ${s.title}`}
                   >
                     Saiba mais
@@ -60,4 +60,3 @@ export default function Services(){
     </section>
   )
 }
-
