@@ -1,4 +1,4 @@
-# Contexto: Site Alpha Tech One (Estilo Engenharia Clean)
+# Contexto: Site Alpha One Tech (Estilo Engenharia Clean)
 
 Atue como Desenvolvedor Senior Frontend. Crie uma Landing Page em usando bun React + Tailwind CSS + shadcn baseada nesta Identidade Visual:
 
@@ -9,7 +9,7 @@ Atue como Desenvolvedor Senior Frontend. Crie uma Landing Page em usando bun Rea
 - **Elementos Visuais:** Cards com bordas sutis e sombras leves. Use fotos de racks de servidores e câmeras de segurança com filtros levemente azulados.
 
 ## 2. Estrutura de Componentes
-- **Hero Section:** Dividida com uma imagem de fundo de um Data Center/Rack organizado (overlay suave). Título: "Alpha Tech One". Subtítulo: "Estrutura, agilidade e segurança".
+- **Hero Section:** Dividida com uma imagem de fundo de um Data Center/Rack organizado (overlay suave). Título: "Alpha One Tech". Subtítulo: "Estrutura, agilidade e segurança".
 - **Cards de Serviços (3 Colunas):** - Fundo branco, ícone azul no topo (Lucide-react: Camera, Shield, Network, Phone).
     - Títulos em Negrito: "CFTV & Câmeras", "Controle de Acesso", "Rede Estruturada".
 - **Seção "Sobre Nós":** Layout limpo com texto à esquerda e uma imagem técnica à direita.

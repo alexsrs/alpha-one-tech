@@ -1,4 +1,4 @@
-## Diretrizes de Aplicação — Alpha Tech One
+## Diretrizes de Aplicação — Alpha One Tech
 
 ### Uso do Logotipo
 - Versão principal: símbolo à esquerda, texto à direita.
@@ -44,7 +44,7 @@ Import (exemplo):
 - Grid de serviços: 3 colunas responsivas; ícone azul no topo, título em negrito.
 
 ### Layouts Específicos
-- Hero: imagem de data center com overlay suave + título "Alpha Tech One" e subtítulo "Estrutura, agilidade e segurança".
+- Hero: imagem de data center com overlay suave + título "Alpha One Tech" e subtítulo "Estrutura, agilidade e segurança".
 - Sobre Nós: texto à esquerda, imagem técnica à direita.
 - Formulário de Contato: formulário simples com mapa ao lado (placeholder).
 

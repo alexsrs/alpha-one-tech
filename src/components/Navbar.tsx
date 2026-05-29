@@ -29,7 +29,7 @@ export default function Navbar(){
             onClick={(e) => { e.preventDefault(); window.location.href = '/'; }}
             className="inline-block cursor-pointer"
           >
-            <img src={logo} alt="Grid" className="h-16 w-auto" loading="lazy" draggable={false} />
+            <img src={logo} alt="Alpha One Tech" className="h-16 w-auto" loading="lazy" draggable={false} />
           </a>
         </div>
 <nav className="hidden md:flex items-center gap-6 text-slate-300">
@@ -43,4 +43,3 @@ export default function Navbar(){
     </header>
   )
 }
-

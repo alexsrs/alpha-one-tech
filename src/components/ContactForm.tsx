@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { contactEmail } from "../lib/contact";
 import services from "../lib/services";
 
 type ContactFormProps = {
   initialService?: string;
   onClose?: () => void;
+};
+
+const fieldLimits = {
+  name: 120,
+  company: 120,
+  email: 160,
+  phone: 40,
+  message: 1000,
 };
 
 export default function ContactForm({ initialService, onClose }: ContactFormProps){
@@ -14,7 +23,7 @@ export default function ContactForm({ initialService, onClose }: ContactFormProp
   const [phone, setPhone] = useState("");
   const [service, setService] = useState(initialService ?? defaultService);
   const [message, setMessage] = useState("");
-  const max = 1000;
+  const max = fieldLimits.message;
 
   function handleReset(){
     setName("");
@@ -36,8 +45,21 @@ export default function ContactForm({ initialService, onClose }: ContactFormProp
       return;
     }
 
+    const subject = `Solicitação de orçamento - ${service}`;
+    const body = [
+      `Nome: ${name.trim()}`,
+      company.trim() ? `Empresa: ${company.trim()}` : null,
+      `E-mail: ${email.trim()}`,
+      `WhatsApp / Telefone: ${phone.trim()}`,
+      `Serviço desejado: ${service}`,
+      "",
+      "Detalhes do projeto:",
+      message.trim() || "Não informado.",
+    ].filter(Boolean).join("\n");
+
+    window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     handleReset();
-    alert("Solicitação enviada (simulada). Entraremos em contato em breve.");
+    alert("Seu aplicativo de e-mail será aberto com a solicitação pronta para envio.");
     if (onClose) onClose();
   }
 
@@ -59,6 +81,7 @@ export default function ContactForm({ initialService, onClose }: ContactFormProp
                   onChange={e => setName(e.target.value)}
                   placeholder="Seu nome completo"
                   required
+                  maxLength={fieldLimits.name}
                   className="w-full bg-white border border-slate-200 rounded-md px-3 py-2 text-slate-800 placeholder:text-slate-400"
                 />
               </div>
@@ -70,6 +93,7 @@ export default function ContactForm({ initialService, onClose }: ContactFormProp
                   value={company}
                   onChange={e => setCompany(e.target.value)}
                   placeholder="Nome da empresa (opcional)"
+                  maxLength={fieldLimits.company}
                   className="w-full bg-white border border-slate-200 rounded-md px-3 py-2 text-slate-800 placeholder:text-slate-400"
                 />
               </div>
@@ -85,6 +109,7 @@ export default function ContactForm({ initialService, onClose }: ContactFormProp
                   onChange={e => setEmail(e.target.value)}
                   placeholder="seu@exemplo.com"
                   required
+                  maxLength={fieldLimits.email}
                   className="w-full bg-white border border-slate-200 rounded-md px-3 py-2 text-slate-800 placeholder:text-slate-400"
                 />
               </div>
@@ -98,6 +123,7 @@ export default function ContactForm({ initialService, onClose }: ContactFormProp
                   onChange={e => setPhone(e.target.value)}
                   placeholder="(21) 99999-9999"
                   required
+                  maxLength={fieldLimits.phone}
                   className="w-full bg-white border border-slate-200 rounded-md px-3 py-2 text-slate-800 placeholder:text-slate-400"
                 />
               </div>
