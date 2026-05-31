@@ -12,6 +12,7 @@ import AboutSection from "./components/AboutSection";
 import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
 import ServiceTemplate from "./components/ServiceTemplate";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 import services from "./lib/services";
 
 const serviceSlugAliases: Record<string, string> = {
@@ -36,6 +37,19 @@ export default function App() {
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
   }, []);
+
+  // route /politica-de-privacidade
+  if (path === "/politica-de-privacidade") {
+    return (
+      <div className="min-h-screen bg-white text-slate-800 font-sans">
+        <Navbar />
+        <main className="pt-20">
+          <PrivacyPolicy />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   // route /servico/:slug
   if (path.startsWith("/servico/")) {

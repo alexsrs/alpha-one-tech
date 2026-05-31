@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { CheckCircle } from "lucide-react";
+import ImgWithFallback from "./ui/img-fallback";
 import Modal from "./ui/modal";
 import ContactForm from "./ContactForm";
 import type { Service } from "../lib/services";
@@ -18,7 +19,7 @@ export default function ServiceTemplate({ service }: Props){
           <button onClick={() => { history.pushState({}, "", "/"); window.dispatchEvent(new PopStateEvent('popstate')); }} className="inline-flex items-center gap-2 border border-white/30 text-white px-5 py-3 rounded cursor-pointer">Voltar</button>
         </div>
         <div className="relative h-64 w-full">
-          <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+          <ImgWithFallback src={service.image} alt={service.title} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
           <div className="absolute left-6 bottom-6 text-white">
             <h1 className="text-3xl font-bold">{service.title}</h1>
@@ -48,7 +49,7 @@ export default function ServiceTemplate({ service }: Props){
           <p className="text-slate-600">{service.howItWorks}</p>
         </div>
         <div>
-          <img src={service.image} alt={service.title} className="w-full rounded" />
+          <ImgWithFallback src={service.image} alt={service.title} className="w-full rounded" />
         </div>
       </section>
 
@@ -58,7 +59,7 @@ export default function ServiceTemplate({ service }: Props){
           <p className="text-slate-600">{service.whereToUse}</p>
         </div>
         <div className="md:order-first">
-          <img src={service.image} alt={service.title} className="w-full rounded" />
+          <ImgWithFallback src={service.image} alt={service.title} className="w-full rounded" />
         </div>
       </section>
 
@@ -68,7 +69,7 @@ export default function ServiceTemplate({ service }: Props){
           <p className="text-slate-600">Trabalhamos com as melhores marcas e desenvolvimentos de soluções próprias em nossos projetos, garantindo uma solução abrangente e completa. Nossos técnicos são treinados junto aos fabricantes para garantir qualidade na instalação e suporte.</p>
         </div>
         <div>
-          <img src="/assets/team.jpg" alt="Equipe" className="w-full rounded" />
+          <ImgWithFallback src="/assets/team.jpg" alt="Equipe" className="w-full rounded" />
         </div>
       </section>
 

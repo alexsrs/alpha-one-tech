@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import ImgWithFallback from "./ui/img-fallback";
 
 export default function Partners(){
   const partners = [
@@ -48,7 +49,7 @@ export default function Partners(){
             {partners.map((p, idx) => (
               <div key={idx} className="flex-shrink-0 flex items-center justify-center w-44 partner-logo">
                 <a href={p.href} target="_blank" rel="noopener noreferrer" className="block px-2 py-2">
-                  <img src={p.src} alt={`Parceiro ${idx+1}`} className="max-h-14 object-contain" />
+                  <ImgWithFallback src={p.src} alt={`Parceiro ${idx+1}`} className="max-h-14 object-contain" />
                 </a>
               </div>
             ))}

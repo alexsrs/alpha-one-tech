@@ -22,7 +22,11 @@ export default function Footer(){
 
         <div className="w-full md:w-auto text-sm text-slate-600 text-center md:text-right">
           <div>© {new Date().getFullYear()} Alpha One Tech — Todos os direitos reservados</div>
-          <div className="text-xs text-slate-400 mt-1">Powered by ATNexusLab</div>
+          <div className="text-xs text-slate-500 mt-1">
+            <a href="/politica-de-privacidade" className="hover:text-[#0036b2] underline">Política de Privacidade</a>
+            <span className="mx-1">·</span>
+            Powered by ATNexusLab
+          </div>
         </div>
       </div>
     </footer>

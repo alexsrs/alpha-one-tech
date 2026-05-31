@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alphaonetech.com.br/sitemap.xml

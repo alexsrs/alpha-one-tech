@@ -23,6 +23,7 @@ export default function ContactForm({ initialService, onClose }: ContactFormProp
   const [phone, setPhone] = useState("");
   const [service, setService] = useState(initialService ?? defaultService);
   const [message, setMessage] = useState("");
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const max = fieldLimits.message;
 
   function handleReset(){
@@ -42,6 +43,10 @@ export default function ContactForm({ initialService, onClose }: ContactFormProp
     e.preventDefault();
     if (!name.trim() || !email.trim() || !phone.trim()){
       alert("Por favor preencha Nome, E-mail e WhatsApp/Telefone.");
+      return;
+    }
+    if (!privacyAccepted){
+      alert("Para continuar, leia e aceite a Política de Privacidade.");
       return;
     }
 
@@ -152,6 +157,23 @@ export default function ContactForm({ initialService, onClose }: ContactFormProp
                 <div className="text-xs text-slate-500">Informações que ajudam na elaboração do orçamento.</div>
                 <div className="text-xs text-slate-500">{message.length}/{max} caracteres</div>
               </div>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <input
+                id="privacy-accept"
+                type="checkbox"
+                checked={privacyAccepted}
+                onChange={e => setPrivacyAccepted(e.target.checked)}
+                className="mt-1 w-4 h-4 accent-[#0036b2]"
+              />
+              <label htmlFor="privacy-accept" className="text-sm text-slate-600">
+                Li e aceito a{" "}
+                <a href="/politica-de-privacidade" className="text-[#0036b2] underline">
+                  Política de Privacidade
+                </a>{" "}
+                e autorizo o contato para fins de orçamento e prestação de serviços. *
+              </label>
             </div>
 
             <div className="flex items-center gap-3">

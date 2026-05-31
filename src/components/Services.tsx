@@ -1,5 +1,6 @@
 ﻿import React from "react";
 import { Camera, Shield, Network, Phone, Settings } from "lucide-react";
+import ImgWithFallback from "./ui/img-fallback";
 import services from "../lib/services";
 
 function makeIcon(title: string){
@@ -26,7 +27,7 @@ export default function Services(){
               className="text-left bg-white rounded-lg shadow-sm border overflow-hidden transform transition hover:shadow-md hover:-translate-y-1"
             >
               <div className="relative h-40 w-full">
-                <img src={s.image} alt={s.title} className="w-full h-full object-cover" />
+                <ImgWithFallback src={s.image} alt={s.title} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
                 <div className="absolute left-4 right-4 bottom-4 text-white">
                   <div className="absolute inset-0 px-3 pb-3 flex items-end">

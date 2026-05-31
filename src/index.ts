@@ -2,6 +2,7 @@ import { serve } from "bun";
 import index from "./index.html";
 
 const server = serve({
+  port: process.env.PORT ? parseInt(process.env.PORT) : 4000,
   routes: {
     // Serve static assets from public/assets first
     "/assets/*": async (req: Request) => {
