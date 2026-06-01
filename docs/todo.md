@@ -113,7 +113,7 @@
 - [x] Conectar repositório ao Vercel
 - [x] Adicionar env var `RESEND_API_KEY`
 - [x] Confirmar build automático via push
-- [ ] Configurar domínio `alphaonetech.com.br`
+- [x] Configurar domínio `alphaonetech.com.br`
 
 ### Validação
 - [x] `bun run build` → exit code 0
