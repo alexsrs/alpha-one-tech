@@ -16,11 +16,11 @@
 ## Fase 1 — Bloqueadores Críticos
 
 ### 1. Formulário de Contato Funcional
-- [ ] Criar `api/contact.ts` — serverless function (POST, validação, envio via Resend)
-- [ ] Reescrever `src/lib/contact.ts` — fetch para `/api/contact`, timeout 10s, tratamento de erro
-- [ ] Atualizar `src/components/ContactForm.tsx` — estados idle/submitting/success/error
-- [ ] Adicionar env var `RESEND_API_KEY` na Vercel
-- [ ] Validação client-side: campos obrigatórios, email válido
+- [x] Criar `api/contact.ts` — serverless function (POST, validação, envio via Resend)
+- [x] Reescrever `src/lib/contact.ts` — fetch para `/api/contact`, timeout 10s, tratamento de erro
+- [x] Atualizar `src/components/ContactForm.tsx` — estados idle/submitting/success/error
+- [x] Adicionar env var `RESEND_API_KEY` na Vercel (confirmado pelo usuário)
+- [x] Validação client-side: campos obrigatórios, email válido
 
 **Arquivos:**
 - `api/contact.ts` (novo)
@@ -98,7 +98,7 @@
 ### Deploy na Vercel
 - [x] Conectar repositório ao Vercel
 - [ ] Configurar domínio `alphaonetech.com.br`
-- [ ] Adicionar env var `RESEND_API_KEY`
+- [x] Adicionar env var `RESEND_API_KEY`
 - [ ] Confirmar build automático via push
 
 ### Validação
