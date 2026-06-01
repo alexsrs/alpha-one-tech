@@ -95,7 +95,17 @@ function HeroGeometric({
 
     return (
         <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#001a4d]">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#0036b2]/[0.08] via-transparent to-[#0036b2]/[0.05] blur-3xl" />
+            {/* Background image */}
+            <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: "url(/assets/hero.jpg)" }}
+            />
+
+            {/* Dark gradient overlay for readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#001a4d]/[0.88] via-[#001a4d]/[0.65] to-[#001a4d]/[0.5]" />
+
+            {/* Color accent gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#0036b2]/[0.1] via-transparent to-[#0036b2]/[0.05] blur-3xl" />
 
             <div className="absolute inset-0 overflow-hidden">
                 <ElegantShape
