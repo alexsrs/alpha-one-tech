@@ -7,7 +7,7 @@
 | **Domínio** | alphaonetech.com.br |
 | **Plataforma** | Vercel |
 | **E-mail destino** | alphainstalacoes02@gmail.com |
-| **WhatsApp** | (21) 99119-5338 |
+| **WhatsApp** | (21) 97352-4066 |
 | **API de e-mail** | Resend (serverless function) |
 | **Analytics** | Google Analytics 4 |
 
@@ -79,10 +79,10 @@
 ## Fase 2 — Importantes
 
 ### 6. WhatsApp Flutuante
-- [ ] Criar `src/components/WhatsAppButton.tsx`
-- [ ] Link: `https://wa.me/5521991195338?text=Olá! Vi o site da Alpha One Tech.`
-- [ ] Posição fixa, visível em mobile e desktop
-- [ ] Adicionar `src/App.tsx`
+- [x] Criar `src/components/WhatsAppButton.tsx`
+- [x] Link: `https://wa.me/5521973524066?text=Olá! Vi o site da Alpha One Tech.`
+- [x] Posição fixa, visível em mobile e desktop
+- [x] Adicionar `src/App.tsx`
 
 **Arquivo:** `src/components/WhatsAppButton.tsx` (novo)
 
@@ -111,12 +111,12 @@
 
 ### Deploy na Vercel
 - [x] Conectar repositório ao Vercel
-- [ ] Configurar domínio `alphaonetech.com.br`
 - [x] Adicionar env var `RESEND_API_KEY`
-- [ ] Confirmar build automático via push
+- [x] Confirmar build automático via push
+- [ ] Configurar domínio `alphaonetech.com.br`
 
 ### Validação
-- [ ] `bun run build` → exit code 0
+- [x] `bun run build` → exit code 0
 - [ ] Formulário envia e-mail em produção
 - [ ] Sem broken images
 - [ ] Sem typos/placeholders
