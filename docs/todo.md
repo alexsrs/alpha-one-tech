@@ -62,6 +62,20 @@
 
 ---
 
+### 5b. Hero Animado (HeroGeometric)
+- [x] Instalar framer-motion
+- [x] Criar `src/components/ui/shape-landing-hero.tsx` (HeroGeometric + ElegantShape)
+- [x] Adaptar cores para identidade Alpha One Tech (#0036b2)
+- [x] Restaurar imagem de fundo hero.jpg com overlay
+- [x] Reescrever `src/components/Hero.tsx` como wrapper
+
+### 5c. Seção de Serviços (ServiceCard)
+- [x] Criar `src/components/ui/service-card.tsx` (adaptado do ProductCard)
+- [x] Refatorar `src/components/Services.tsx` para usar ServiceCard
+- [x] Cards com hover effects, badge de ícone, botão "Saiba mais"
+
+---
+
 ## Fase 2 — Importantes
 
 ### 6. WhatsApp Flutuante

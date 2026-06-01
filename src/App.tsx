@@ -13,6 +13,7 @@ import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
 import ServiceTemplate from "./components/ServiceTemplate";
 import PrivacyPolicy from "./components/PrivacyPolicy";
+import WhatsAppButton from "./components/WhatsAppButton";
 import services from "./lib/services";
 
 const serviceSlugAliases: Record<string, string> = {
@@ -47,6 +48,7 @@ export default function App() {
           <PrivacyPolicy />
         </main>
         <Footer />
+        <WhatsAppButton />
       </div>
     );
   }
@@ -95,6 +97,8 @@ export default function App() {
         </section>
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }
+
