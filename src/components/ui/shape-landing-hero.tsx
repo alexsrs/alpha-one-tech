@@ -94,7 +94,7 @@ function HeroGeometric({
     };
 
     return (
-        <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#001a4d]">
+        <div className="relative w-full min-h-screen flex items-center justify-center overflow-x-hidden bg-[#001a4d]">
             {/* Background image */}
             <div
                 className="absolute inset-0 bg-cover bg-center"
