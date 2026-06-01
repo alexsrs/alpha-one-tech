@@ -54,9 +54,9 @@
 - `public/sitemap.xml`
 
 ### 5. Google Analytics 4
-- [ ] Adicionar script `gtag.js` no `index.html`
-- [ ] Configurar evento customizado `form_submit`
-- [ ] Verificar coleta de dados
+- [x] Adicionar script `gtag.js` no `index.html`
+- [x] Configurar evento customizado `form_submit`
+- [x] Measurement ID: `G-F2E1KMCEQ7`
 
 **Arquivo:** `src/index.html`
 

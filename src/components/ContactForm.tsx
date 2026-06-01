@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { submitContact } from "../lib/contact";
+import { trackFormSubmit } from "../lib/analytics";
 import services from "../lib/services";
 
 type ContactFormProps = {
@@ -90,6 +91,7 @@ export default function ContactForm({ initialService, onClose }: ContactFormProp
     });
 
     if (result.success) {
+      trackFormSubmit(service || undefined);
       setStatus("success");
       setName("");
       setCompany("");
