@@ -72,8 +72,10 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white text-slate-800 font-sans">
       <Navbar />
-      <main className="pt-20 container mx-auto p-8">
+      <div className="w-full">
         <Hero />
+      </div>
+      <main className="pt-20 container mx-auto p-8">
         <section className="my-4">
           <Services />
         </section>
