@@ -1,4 +1,5 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
+import { Resend } from "resend";
 
 interface ContactBody {
   name?: string;
@@ -100,7 +101,8 @@ export default async function handler(
       return;
     }
 
-    const contactEmail = (process.env.CONTACT_EMAIL ?? "alphainstalacoes02@gmail.com").replace(/[<>]/g, "").trim();
+    const resend = new Resend(resendApiKey);
+
     const subject = `Contato via site — ${name}${service ? ` (${service})` : ""}`;
     const html = `
       <h2>Novo contato pelo site</h2>
@@ -113,28 +115,16 @@ export default async function handler(
       <p>${message.replace(/\n/g, "<br>")}</p>
     `;
 
-    console.log("[api/contact] enviando via fetch para Resend...");
-    const resendRes = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${resendApiKey}`,
-      },
-      body: JSON.stringify({
-        from: "no-reply@alphaonetech.com.br",
-        to: [contactEmail],
-        reply_to: email,
-        subject,
-        html,
-      }),
+    const contactEmail = (process.env.CONTACT_EMAIL ?? "alphainstalacoes02@gmail.com").replace(/[<>]/g, "").trim();
+    const fromValue = "no-reply@alphaonetech.com.br";
+    console.log("[api/contact] from:", fromValue, "to:", contactEmail);
+    const result = await resend.emails.send({
+      from: fromValue,
+      to: [contactEmail],
+      replyTo: email,
+      subject,
+      html,
     });
-    const resendJson = await resendRes.json();
-    console.log("[api/contact] Resend status:", resendRes.status, "body:", JSON.stringify(resendJson));
-
-    if (!resendRes.ok) {
-      throw new Error(`Resend API error: ${resendRes.status}`);
-    }
-
     res.writeHead(200, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ success: true }));
   } catch (err) {
