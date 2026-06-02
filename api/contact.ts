@@ -93,7 +93,6 @@ export default async function handler(
     }
 
     const resendApiKey = process.env.RESEND_API_KEY;
-    const contactEmail = process.env.CONTACT_EMAIL ?? "alphainstalacoes02@gmail.com";
 
     if (!resendApiKey) {
       console.error("[api/contact] RESEND_API_KEY não configurada");
@@ -116,8 +115,11 @@ export default async function handler(
       <p>${message.replace(/\n/g, "<br>")}</p>
     `;
 
-    const fromValue = "Alpha One Tech <<EMAIL>>";
-    console.log("[api/contact] from:", fromValue, "length:", fromValue.length);
+    const contactEmailRaw = process.env.CONTACT_EMAIL ?? "alphainstalacoes02@gmail.com";
+    const contactEmail = contactEmailRaw.replace(/[<>]/g, "").trim();
+    console.log("[api/contact] contactEmail raw:", contactEmailRaw, "sanitized:", contactEmail);
+    const fromValue = `Alpha One Tech <<EMAIL>>`;
+    console.log("[api/contact] from:", fromValue);
     const result = await resend.emails.send({
       from: fromValue,
       to: [contactEmail],
