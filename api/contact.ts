@@ -116,16 +116,13 @@ export default async function handler(
       <p>${message.replace(/\n/g, "<br>")}</p>
     `;
 
-    console.log("[api/contact] enviando via Resend...");
     const result = await resend.emails.send({
-      from: `Alpha One Tech <${contactEmail}>`,
+      from: `Alpha One Tech <<EMAIL}>`,
       to: [contactEmail],
       replyTo: email,
       subject,
       html,
     });
-    console.log("[api/contact] Resend result:", JSON.stringify(result));
-
     res.writeHead(200, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ success: true }));
   } catch (err) {
