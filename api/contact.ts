@@ -21,7 +21,7 @@ export default async function handler(req: Request): Promise<Response> {
   const headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "POST",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
   };
 
@@ -33,6 +33,14 @@ export default async function handler(req: Request): Promise<Response> {
     return new Response(
       JSON.stringify({ error: "Method not allowed" }),
       { status: 405, headers }
+    );
+  }
+
+  const contentType = req.headers.get("content-type") || "";
+  if (!contentType.includes("application/json")) {
+    return new Response(
+      JSON.stringify({ error: "Content-Type deve ser application/json" }),
+      { status: 415, headers }
     );
   }
 
