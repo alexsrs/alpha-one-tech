@@ -115,11 +115,9 @@ export default async function handler(
       <p>${message.replace(/\n/g, "<br>")}</p>
     `;
 
-    const contactEmailRaw = process.env.CONTACT_EMAIL ?? "alphainstalacoes02@gmail.com";
-    const contactEmail = contactEmailRaw.replace(/[<>]/g, "").trim();
-    console.log("[api/contact] contactEmail raw:", contactEmailRaw, "sanitized:", contactEmail);
-    const fromValue = `Alpha One Tech <<EMAIL>>`;
-    console.log("[api/contact] from:", fromValue);
+    const contactEmail = (process.env.CONTACT_EMAIL ?? "alphainstalacoes02@gmail.com").replace(/[<>]/g, "").trim();
+    const fromValue = "<EMAIL>";
+    console.log("[api/contact] from:", fromValue, "to:", contactEmail);
     const result = await resend.emails.send({
       from: fromValue,
       to: [contactEmail],
