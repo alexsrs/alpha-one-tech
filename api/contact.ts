@@ -116,8 +116,10 @@ export default async function handler(
       <p>${message.replace(/\n/g, "<br>")}</p>
     `;
 
+    const fromValue = "Alpha One Tech <<EMAIL>>";
+    console.log("[api/contact] from:", fromValue, "length:", fromValue.length);
     const result = await resend.emails.send({
-      from: `Alpha One Tech <<EMAIL}>`,
+      from: fromValue,
       to: [contactEmail],
       replyTo: email,
       subject,
