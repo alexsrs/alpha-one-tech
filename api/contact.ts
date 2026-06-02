@@ -1,3 +1,4 @@
+import type { IncomingMessage, ServerResponse } from "node:http";
 import { Resend } from "resend";
 
 interface ContactBody {
@@ -17,35 +18,48 @@ function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-export default async function handler(req: Request): Promise<Response> {
-  const headers = {
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
-  };
+function readBody(req: IncomingMessage): Promise<string> {
+  return new Promise((resolve, reject) => {
+    let data = "";
+    req.on("data", (chunk: Buffer) => {
+      data += chunk.toString();
+    });
+    req.on("end", () => resolve(data));
+    req.on("error", reject);
+  });
+}
+
+export default async function handler(
+  req: IncomingMessage,
+  res: ServerResponse
+): Promise<void> {
+  // CORS
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
   if (req.method === "OPTIONS") {
-    return new Response(null, { status: 204, headers });
+    res.writeHead(204);
+    res.end();
+    return;
   }
 
   if (req.method !== "POST") {
-    return new Response(
-      JSON.stringify({ error: "Method not allowed" }),
-      { status: 405, headers }
-    );
+    res.writeHead(405, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ error: "Method not allowed" }));
+    return;
   }
 
-  const contentType = req.headers.get("content-type") || "";
+  const contentType = req.headers["content-type"] || "";
   if (!contentType.includes("application/json")) {
-    return new Response(
-      JSON.stringify({ error: "Content-Type deve ser application/json" }),
-      { status: 415, headers }
-    );
+    res.writeHead(415, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ error: "Content-Type deve ser application/json" }));
+    return;
   }
 
   try {
-    const body: ContactBody = await req.json();
+    const raw = await readBody(req);
+    const body: ContactBody = JSON.parse(raw);
 
     const name = sanitize(body.name || "");
     const email = sanitize(body.email || "");
@@ -55,78 +69,66 @@ export default async function handler(req: Request): Promise<Response> {
     const service = sanitize(body.service || "");
 
     if (!name || name.length > 120) {
-      return new Response(
-        JSON.stringify({ success: false, error: "Nome é obrigatório (máx. 120 caracteres)." }),
-        { status: 400, headers }
-      );
+      res.writeHead(400, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ success: false, error: "Nome é obrigatório (máx. 120 caracteres)." }));
+      return;
     }
 
     if (!email || email.length > 160 || !isValidEmail(email)) {
-      return new Response(
-        JSON.stringify({ success: false, error: "E-mail inválido ou obrigatório (máx. 160 caracteres)." }),
-        { status: 400, headers }
-      );
+      res.writeHead(400, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ success: false, error: "E-mail inválido ou obrigatório (máx. 160 caracteres)." }));
+      return;
     }
 
     if (!phone || phone.length > 40) {
-      return new Response(
-        JSON.stringify({ success: false, error: "Telefone é obrigatório (máx. 40 caracteres)." }),
-        { status: 400, headers }
-      );
+      res.writeHead(400, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ success: false, error: "Telefone é obrigatório (máx. 40 caracteres)." }));
+      return;
     }
 
-    if (!message || message.length > 1000) {
-      return new Response(
-        JSON.stringify({ success: false, error: "Mensagem é obrigatória (máx. 1000 caracteres)." }),
-        { status: 400, headers }
-      );
+    if (!message || message.length > 2000) {
+      res.writeHead(400, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ success: false, error: "Mensagem é obrigatória (máx. 2000 caracteres)." }));
+      return;
     }
 
-    if (company && company.length > 120) {
-      return new Response(
-        JSON.stringify({ success: false, error: "Empresa deve ter no máximo 120 caracteres." }),
-        { status: 400, headers }
-      );
+    const resendApiKey = process.env.RESEND_API_KEY;
+    const contactEmail = process.env.CONTACT_EMAIL ?? "alphainstalacoes02@gmail.com";
+
+    if (!resendApiKey) {
+      console.error("[api/contact] RESEND_API_KEY não configurada");
+      res.writeHead(500, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ success: false, error: "Serviço de e-mail não configurado." }));
+      return;
     }
 
-    if (service && service.length > 200) {
-      return new Response(
-        JSON.stringify({ success: false, error: "Serviço deve ter no máximo 200 caracteres." }),
-        { status: 400, headers }
-      );
-    }
+    const resend = new Resend(resendApiKey);
 
-    const resend = new Resend(process.env.RESEND_API_KEY);
-
-    const subject = `Contato do site — ${name} (${service || "Geral"})`;
-    const textLines = [
-      `Nome: ${name}`,
-      company ? `Empresa: ${company}` : null,
-      `E-mail: ${email}`,
-      `Telefone: ${phone}`,
-      `Serviço: ${service || "Geral"}`,
-      "",
-      "Mensagem:",
-      message || "Não informado.",
-    ].filter(Boolean).join("\n");
+    const subject = `Contato via site — ${name}${service ? ` (${service})` : ""}`;
+    const html = `
+      <h2>Novo contato pelo site</h2>
+      <p><strong>Nome:</strong> ${name}</p>
+      <p><strong>E-mail:</strong> ${email}</p>
+      <p><strong>Telefone:</strong> ${phone}</p>
+      ${company ? `<p><strong>Empresa:</strong> ${company}</p>` : ""}
+      ${service ? `<p><strong>Serviço:</strong> ${service}</p>` : ""}
+      <p><strong>Mensagem:</strong></p>
+      <p>${message.replace(/\n/g, "<br>")}</p>
+    `;
 
     await resend.emails.send({
-      from: "Alpha One Tech <noreply@alphaonetech.com.br>",
-      to: ["alphainstalacoes02@gmail.com"],
+      from: `Alpha One Tech <${contactEmail}>`,
+      to: [contactEmail],
       replyTo: email,
       subject,
-      text: textLines,
+      html,
     });
 
-    return new Response(
-      JSON.stringify({ success: true }),
-      { status: 200, headers }
-    );
-  } catch (err: unknown) {
-    console.error("[api/contact] Error:", err);
-    return new Response(
-      JSON.stringify({ success: false, error: "Erro interno do servidor. Tente novamente mais tarde." }),
-      { status: 500, headers }
-    );
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ success: true }));
+  } catch (err) {
+    console.error("[api/contact] erro:", err);
+    res.writeHead(500, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ success: false, error: "Erro interno ao enviar mensagem." }));
   }
 }
